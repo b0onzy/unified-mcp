@@ -1,0 +1,62 @@
+{
+  "name": "@ucp/core",
+  "version": "0.1.0",
+  "description": "Core protocol specification and types for Unified Context Protocol",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./types": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/types/index.js"
+    },
+    "./protocol": {
+      "types": "./dist/protocol/index.d.ts",
+      "import": "./dist/protocol/index.js"
+    },
+    "./validation": {
+      "types": "./dist/validation/index.d.ts",
+      "import": "./dist/validation/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "schema"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "generate": "npm run generate:types && npm run generate:schema",
+    "generate:types": "openapi-generator-cli generate -i schema/openapi.yaml -g typescript-fetch -o src/generated",
+    "generate:schema": "typescript-json-schema tsconfig.json --required MemoryEntry -o schema/memory-entry.schema.json",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "typescript": "catalog:",
+    "tsup": "catalog:",
+    "vitest": "catalog:",
+    "typescript-json-schema": "^0.62.0"
+  },
+  "keywords": [
+    "ucp",
+    "protocol",
+    "types",
+    "memory",
+    "ai"
+  ],
+  "author": "b0onzy",
+  "license": "MIT"
+}

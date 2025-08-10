@@ -1,0 +1,95 @@
+{
+  "name": "unified-mcp",
+  "version": "0.1.0",
+  "description": "Unified Model Context Protocol - A standardized, model-agnostic memory fabric for AI coding assistants",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0",
+  "workspaces": [
+    "packages/*",
+    "packages/clients/*",
+    "packages/integrations/*",
+    "packages/shared/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "test": "turbo run test",
+    "test:unit": "turbo run test:unit",
+    "test:integration": "turbo run test:integration",
+    "test:e2e": "turbo run test:e2e",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "format": "prettier --write \"**/*.{ts,js,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,js,json,md}\"",
+    "typecheck": "turbo run typecheck",
+    "clean": "turbo run clean && rm -rf node_modules/.cache",
+    "generate": "turbo run generate",
+    "generate:api": "openapi-generator-cli generate",
+    "generate:docs": "turbo run generate:docs",
+    "docker:build": "docker-compose -f infrastructure/docker-compose/docker-compose.yml build",
+    "docker:up": "docker-compose -f infrastructure/docker-compose/docker-compose.yml up -d",
+    "docker:down": "docker-compose -f infrastructure/docker-compose/docker-compose.yml down",
+    "k8s:deploy": "kubectl apply -f infrastructure/kubernetes/",
+    "k8s:delete": "kubectl delete -f infrastructure/kubernetes/",
+    "release": "changeset publish",
+    "version": "changeset version",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "@openapitools/openapi-generator-cli": "^2.7.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.2.5",
+    "turbo": "^1.11.2",
+    "typescript": "^5.3.3"
+  },
+  "keywords": [
+    "ai",
+    "memory",
+    "context",
+    "protocol",
+    "mcp",
+    "developer-tools",
+    "coding-assistant",
+    "vector-database",
+    "typescript",
+    "nodejs"
+  ],
+  "author": "b0onzy",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/unified-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/unified-mcp/issues"
+  },
+  "homepage": "https://github.com/yourusername/unified-mcp#readme",
+  "lint-staged": {
+    "*.{ts,js}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
+}

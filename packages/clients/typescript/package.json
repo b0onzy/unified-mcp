@@ -1,0 +1,63 @@
+{
+  "name": "@ucp/client-ts",
+  "version": "0.1.0",
+  "description": "TypeScript/JavaScript client library for Unified Context Protocol",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./browser": {
+      "types": "./dist/browser.d.ts",
+      "import": "./dist/browser.js"
+    },
+    "./node": {
+      "types": "./dist/node.d.ts",
+      "import": "./dist/node.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:browser": "vitest run --config vitest.browser.config.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "generate:docs": "typedoc",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@ucp/core": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "typescript": "catalog:",
+    "tsup": "catalog:",
+    "vitest": "catalog:",
+    "@vitest/browser": "^1.1.0",
+    "playwright": "^1.40.1",
+    "typedoc": "^0.25.4"
+  },
+  "keywords": [
+    "ucp",
+    "client",
+    "typescript",
+    "javascript",
+    "memory",
+    "ai"
+  ],
+  "author": "b0onzy",
+  "license": "MIT",
+  "browser": {
+    "./dist/node.js": "./dist/browser.js"
+  }
+}

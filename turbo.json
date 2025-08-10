@@ -1,0 +1,142 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build", "generate"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!**/*.test.ts",
+        "!**/*.spec.ts",
+        "!**/test/**",
+        "!**/tests/**"
+      ],
+      "outputs": [
+        "dist/**",
+        "build/**",
+        ".next/**",
+        "!.next/cache/**"
+      ]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "**/*.test.ts",
+        "**/*.spec.ts",
+        "**/test/**",
+        "**/tests/**"
+      ],
+      "outputs": [
+        "coverage/**"
+      ]
+    },
+    "test:unit": {
+      "dependsOn": ["build"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "**/*.test.ts",
+        "**/*.spec.ts"
+      ],
+      "outputs": [
+        "coverage/**"
+      ]
+    },
+    "test:integration": {
+      "dependsOn": ["build"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "**/integration/**",
+        "**/e2e/**"
+      ],
+      "outputs": [
+        "coverage/**"
+      ]
+    },
+    "test:e2e": {
+      "dependsOn": ["build"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "**/e2e/**"
+      ],
+      "outputs": [
+        "test-results/**"
+      ]
+    },
+    "lint": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".eslintrc.js",
+        ".eslintignore"
+      ],
+      "outputs": []
+    },
+    "lint:fix": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".eslintrc.js",
+        ".eslintignore"
+      ],
+      "outputs": []
+    },
+    "typecheck": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "tsconfig.json",
+        "tsconfig.*.json"
+      ],
+      "outputs": []
+    },
+    "generate": {
+      "inputs": [
+        "schema/**",
+        "openapi.yaml",
+        "**/*.proto"
+      ],
+      "outputs": [
+        "src/generated/**",
+        "generated/**"
+      ]
+    },
+    "generate:docs": {
+      "dependsOn": ["build"],
+      "inputs": [
+        "$TURBO_DEFAULT$"
+      ],
+      "outputs": [
+        "docs/api/**",
+        "dist/docs/**"
+      ]
+    },
+    "clean": {
+      "cache": false,
+      "outputs": []
+    }
+  },
+  "globalDependencies": [
+    "package.json",
+    "pnpm-workspace.yaml",
+    "turbo.json",
+    ".env",
+    ".env.local",
+    "tsconfig.json",
+    ".eslintrc.js",
+    ".prettierrc"
+  ],
+  "globalEnv": [
+    "NODE_ENV",
+    "CI",
+    "ANTHROPIC_API_KEY",
+    "OPENAI_API_KEY",
+    "DATABASE_URL",
+    "REDIS_URL"
+  ],
+  "remoteCache": {
+    "signature": true
+  }
+}

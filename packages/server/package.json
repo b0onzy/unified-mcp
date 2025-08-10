@@ -1,0 +1,59 @@
+{
+  "name": "@ucp/server",
+  "version": "0.1.0",
+  "description": "UCP Memory Server - REST and MCP server implementation",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "ucp-server": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "docker"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch --onSuccess \"node dist/index.js\"",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "docker:build": "docker build -f docker/Dockerfile -t ucp-server .",
+    "docker:run": "docker run -p 3000:3000 ucp-server",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@ucp/core": "workspace:*",
+    "@ucp/shared-config": "workspace:*",
+    "@ucp/shared-logging": "workspace:*",
+    "fastify": "catalog:",
+    "@fastify/cors": "catalog:",
+    "@fastify/swagger": "catalog:",
+    "pg": "catalog:",
+    "@pgvector/pg": "catalog:",
+    "redis": "catalog:",
+    "commander": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@types/pg": "^8.10.9",
+    "typescript": "catalog:",
+    "tsup": "catalog:",
+    "vitest": "catalog:",
+    "testcontainers": "^10.5.0"
+  },
+  "keywords": [
+    "ucp",
+    "server",
+    "memory",
+    "api",
+    "mcp"
+  ],
+  "author": "b0onzy",
+  "license": "MIT"
+}

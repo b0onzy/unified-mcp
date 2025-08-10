@@ -1,0 +1,73 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "composite": true,
+    "incremental": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "baseUrl": ".",
+    "paths": {
+      "@unified-mcp/core": ["./packages/core/src"],
+      "@unified-mcp/server": ["./packages/server/src"],
+      "@unified-mcp/client-ts": ["./packages/clients/typescript/src"],
+      "@unified-mcp/shared-*": ["./packages/shared/*/src"],
+      "@unified-mcp/testing": ["./packages/shared/testing/src"],
+      "@unified-mcp/config": ["./packages/shared/config/src"],
+      "@unified-mcp/logger": ["./packages/shared/logger/src"],
+      "@unified-mcp/types": ["./packages/shared/types/src"]
+    }
+  },
+  "include": [],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "coverage",
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ],
+  "references": [
+    {
+      "path": "./packages/core"
+    },
+    {
+      "path": "./packages/server"
+    },
+    {
+      "path": "./packages/clients/typescript"
+    },
+    {
+      "path": "./packages/shared/testing"
+    },
+    {
+      "path": "./packages/shared/config"
+    },
+    {
+      "path": "./packages/shared/logging"
+    },
+    {
+      "path": "./packages/integrations/cli"
+    },
+    {
+      "path": "./packages/integrations/vscode"
+    }
+  ]
+}
